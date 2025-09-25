@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kerangka Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between px-6 py-4 border-b">
+      <div class="text-2xl">😊</div>
+      <ul class="flex space-x-4">
+        <li><a href="#" class="border px-3 py-1 rounded hover:bg-gray-200">Home</a></li>
+        <li><a href="#" class="border px-3 py-1 rounded hover:bg-gray-200">Our Profile</a></li>
+        <li><a href="#" class="border px-3 py-1 rounded hover:bg-gray-200">Portfolio</a></li>
+        <li><a href="#" class="border px-3 py-1 rounded hover:bg-gray-200">Message Us</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="text-center py-10 border-b">
+      <h1 class="text-2xl font-semibold mb-2">Hi <span id="username"> </span>, Welcome To Website</h1>
+      <p class="mb-6">Ini adalah website latihan pertama</p>
+      <div class="w-full h-40 border flex items-center justify-center">
+        <span>[GAMBAR]</span>
+      </div>
+    </section>
+
+    <!-- Our Headquarter -->
+    <section class="py-10 border-b text-center">
+      <h2 class="text-xl font-semibold">Our Headquarter</h2>
+      <div class="flex justify-center gap-10 mt-6 flex-wrap">
+        <div>
+          <div class="w-24 h-24 border-2 rounded-full mx-auto"></div>
+          <p class="mt-2">Jakarta</p>
+        </div>
+        <div>
+          <div class="w-24 h-24 border-2 rounded-full mx-auto"></div>
+          <p class="mt-2">Bandung</p>
+        </div>
+        <div>
+          <div class="w-24 h-24 border-2 rounded-full mx-auto"></div>
+          <p class="mt-2">Surabaya</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Message Us -->
+    <section class="py-10 border-b px-6 flex flex-col md:flex-row gap-6">
+      <!-- Form -->
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold mb-4">Message Us</h3>
+        <form id="messageForm" class="space-y-3">
+          <input type="text" placeholder="Nama" required class="w-full border p-2 rounded" />
+          <input type="date" required class="w-full border p-2 rounded" />
+          <select required class="w-full border p-2 rounded">
+            <option value="">--Jenis Kelamin--</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+          </select>
+          <textarea placeholder="Pesan" rows="4" required class="w-full border p-2 rounded"></textarea>
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Submit</button>
+        </form>
+      </div>
+
+      <!-- Info Box -->
+      <div class="flex-1 border p-4 rounded" id="infoBox">
+        <p><b>Current Time:</b> <span id="time"></span></p>
+        <p><b>Nama:</b> -</p>
+        <p><b>Tanggal Lahir:</b> -</p>
+        <p><b>Jenis Kelamin:</b> -</p>
+        <p><b>Pesan:</b> -</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 text-sm">Created By [Nama Anda]</footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
