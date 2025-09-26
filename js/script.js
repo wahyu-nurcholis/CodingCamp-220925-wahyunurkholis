@@ -1,48 +1,74 @@
-// Update waktu realtime
-function welcomeMessage() {
-  /// Prompt user for their name
-  let username = prompt("Enter your name:");
-  /// If a name is entered, display it in the header; otherwise, show a default message
-  if (username) {
-    /// Display the username in the header
-    document.getElementById("username").innerHTML = username;
-  } else {
-    /// If no name is entered, show a default welcome message
-    alert("Welcome to my portfolio!");
+window.addEventListener("DOMContentLoaded", function () {
+  // === GREETING PROMPT ===
+  let usernamePrompt = prompt("Silakan masukkan nama Anda:");
+  if (usernamePrompt) {
+    const greetingEl = document.getElementById("greeting");
+    if (greetingEl) {
+      greetingEl.textContent = "Halo " + usernamePrompt + ", selamat datang di TEKNIK-Q";
+    }
   }
-}
 
-function updateTime() {
-  const now = new Date();
-  document.getElementById("time").textContent = now.toString();
-}
-setInterval(updateTime, 1000);
+  // === CAROUSEL ===
+  const carousel = document.getElementById("testimonialCarousel");
+  const dots = document.querySelectorAll("#dots span");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
-// Handle form submit
-document.getElementById("messageForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+  function updateDots() {
+    if (!carousel) return;
+    const index = Math.round(carousel.scrollLeft / carousel.offsetWidth);
+    dots.forEach((dot, i) => {
+      dot.classList.remove("bg-gray-800", "w-6");
+      dot.classList.add("bg-gray-400");
+      if (i === index) {
+        dot.classList.remove("bg-gray-400");
+        dot.classList.add("bg-gray-800", "w-6");
+      }
+    });
+  }
 
-  const inputs = this.querySelectorAll("input, select, textarea");
-  const infoBox = document.getElementById("infoBox").querySelectorAll("p");
+  if (carousel) {
+    carousel.addEventListener("scroll", updateDots);
+  }
 
-  infoBox[1].innerHTML = "<b>Nama:</b> " + inputs[0].value;
-  infoBox[2].innerHTML = "<b>Tanggal Lahir:</b> " + inputs[1].value;
-  infoBox[3].innerHTML = "<b>Jenis Kelamin:</b> " + inputs[2].value;
-  infoBox[4].innerHTML = "<b>Pesan:</b> " + inputs[3].value;
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      const width = carousel.offsetWidth;
+      carousel.scrollBy({ left: width, behavior: "smooth" });
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      const width = carousel.offsetWidth;
+      carousel.scrollBy({ left: -width, behavior: "smooth" });
+    });
+  }
+
+  // === FORM HANDLER ===
+  const form = document.getElementById("reviewForm");
+  const thankYouMessage = document.getElementById("thankYouMessage");
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // cegah reload
+
+      const userName = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (userName === "" || email === "" || message === "") {
+        alert("⚠️ Harap isi semua field sebelum mengirim!");
+        return;
+      }
+
+      // tampilkan pesan terima kasih
+      if (thankYouMessage) {
+        thankYouMessage.classList.remove("hidden");
+      }
+
+      // reset form
+      form.reset();
+    });
+  }
 });
-
-function validateForm() {
-  /// Get form values
-  let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
-  let message = document.getElementById("message").value;
-
-  /// Simple validation
-  if (name === "" || email === "" || message === "") {
-    /// If any field is empty, show an alert
-    alert("Please fill in all fields.");
-  } else {
-    /// If all fields are filled, show a success message
-    alert(`Thanks, ${name}! Form submitted successfully!`);
-  }
-}
