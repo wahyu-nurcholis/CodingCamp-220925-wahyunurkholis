@@ -1,5 +1,4 @@
 window.addEventListener("DOMContentLoaded", function () {
-  // === GREETING PROMPT ===
   let usernamePrompt = prompt("Silakan masukkan nama Anda:");
   if (usernamePrompt) {
     const greetingEl = document.getElementById("greeting");
@@ -51,7 +50,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   if (form) {
     form.addEventListener("submit", function (e) {
-      e.preventDefault(); // cegah reload
+      e.preventDefault();
 
       const userName = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
@@ -62,12 +61,10 @@ window.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // tampilkan pesan terima kasih
       if (thankYouMessage) {
         thankYouMessage.classList.remove("hidden");
       }
 
-      // reset form
       form.reset();
     });
   }
